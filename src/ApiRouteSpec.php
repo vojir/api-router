@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * @copyright   Copyright (c) 2016 ublaboo <ublaboo@paveljanda.com>
  * @author      Pavel Janda <me@paveljanda.com>
@@ -79,10 +77,11 @@ abstract class ApiRouteSpec
 	 */
 	protected $disable = false;
 
-
-	/**
-	 * @param array $data
-	 */
+  /**
+   * ApiRouteSpec constructor.
+   * @param array $data
+   * @throws ApiRouteWrongPropertyException
+   */
 	public function __construct(array $data)
 	{
 		foreach ($data as $key => $value) {
@@ -99,19 +98,24 @@ abstract class ApiRouteSpec
 	}
 
 
-	public function setDescription(?string $description): void
+	public function setDescription($description)
 	{
 		$this->description = $description;
 	}
 
-
-	public function getDescription(): ?string
+  /**
+   * @return null|string
+   */
+	public function getDescription()
 	{
 		return $this->description;
 	}
 
-
-	protected function setPath(string $path): void
+  /**
+   * @param string $path
+   * @throws ApiRouteWrongPropertyException
+   */
+	protected function setPath($path)
 	{
 		if (!$path) {
 			throw new ApiRouteWrongPropertyException('ApiRoute path can not be empty');
@@ -120,29 +124,36 @@ abstract class ApiRouteSpec
 		$this->path = (string) $path;
 	}
 
-
-	public function getPath(): string
+  /**
+   * @return string
+   */
+	public function getPath()
 	{
 		return $this->path;
 	}
 
-
-	protected function setMethod(string $method): void
+  /**
+   * @param string $method
+   */
+	protected function setMethod($method)
 	{
 		$this->method = strtoupper($method);
 	}
 
-
-	public function getMethod(): string
+  /**
+   * @return string
+   */
+	public function getMethod()
 	{
 		return $this->method;
 	}
 
 
-	/**
-	 * @throws ApiRouteWrongPropertyException
-	 */
-	protected function setParameters(array $parameters): void
+  /**
+   * @param array $parameters
+   * @throws ApiRouteWrongPropertyException
+   */
+	protected function setParameters(array $parameters)
 	{
 		foreach ($parameters as $key => $info) {
 			if (strpos($this->getPath(), "<{$key}>") === false) {
@@ -169,68 +180,90 @@ abstract class ApiRouteSpec
 		$this->parameters = $parameters;
 	}
 
-
-	public function getParameters(): array
+  /**
+   * @return array
+   */
+	public function getParameters()
 	{
 		return $this->parameters;
 	}
 
-
-	public function setPriority(int $priority): void
+  /**
+   * @param int $priority
+   */
+	public function setPriority($priority)
 	{
 		$this->priority = $priority;
 	}
 
-
-	public function getPriority(): int
+  /**
+   * @return int
+   */
+	public function getPriority()
 	{
 		return $this->priority;
 	}
 
-
-	public function setFormat(string $format): void
+  /**
+   * @param string $format
+   */
+	public function setFormat($format)
 	{
 		$this->format = $format;
 	}
 
-
-	public function getFormat(): string
+  /**
+   * @return string
+   */
+	public function getFormat()
 	{
 		return $this->format;
 	}
 
-
-	public function setExample(?array $example): void
+  /**
+   * @param array|null $example
+   */
+	public function setExample($example=null)
 	{
 		$this->example = $example;
 	}
 
-
-	public function getExample(): ?array
+  /**
+   * @return array|null
+   */
+	public function getExample()
 	{
 		return $this->example;
 	}
 
-
-	public function setSection(?string $section): void
+  /**
+   * @param null|string $section
+   */
+	public function setSection($section=null)
 	{
 		$this->section = $section;
 	}
 
-
-	public function getSection(): ?string
+  /**
+   * @return null|string
+   */
+	public function getSection()
 	{
 		return $this->section;
 	}
 
-
-	public function setTags(array $tags): void
+  /**
+   * @param array $tags
+   */
+	public function setTags(array $tags)
 	{
 		$this->tags = $tags;
 	}
 
-
-	public function getTags(): array
+  /**
+   * @return array
+   */
+	public function getTags()
 	{
 		$return = [];
 
@@ -248,26 +281,34 @@ abstract class ApiRouteSpec
 		return $return;
 	}
 
-
-	public function setResponseCodes(array $response_codes): void
+  /**
+   * @param array $response_codes
+   */
+	public function setResponseCodes(array $response_codes)
 	{
 		$this->response_codes = $response_codes;
 	}
 
-
-	public function getResponseCodes(): array
+  /**
+   * @return array
+   */
+	public function getResponseCodes()
 	{
 		return $this->response_codes;
 	}
 
-
-	public function setDisable(bool $disable): void
+  /**
+   * @param bool $disable
+   */
+	public function setDisable($disable)
 	{
 		$this->disable = (bool) $disable;
 	}
 
-
-	public function getDisable(): bool
+  /**
+   * @return bool
+   */
+	public function getDisable()
 	{
 		return $this->disable;
 	}

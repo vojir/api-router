@@ -38,7 +38,7 @@ class ApiRouterExtension extends CompilerExtension
 	private $reader;
 
 
-	public function beforeCompile(): void
+	public function beforeCompile()
 	{
 		$config = $this->_getConfig();
 
@@ -88,8 +88,11 @@ class ApiRouterExtension extends CompilerExtension
 		);
 	}
 
-
-	private function findRoutes(ContainerBuilder $builder): array
+  /**
+   * @param ContainerBuilder $builder
+   * @return array
+   */
+	private function findRoutes(ContainerBuilder $builder)
 	{
 		/**
 		 * Find all presenters and their routes
@@ -107,8 +110,11 @@ class ApiRouterExtension extends CompilerExtension
 		return $this->sortByPriority($routes);
 	}
 
-
-	private function findRoutesInPresenter(string $presenter, array &$routes): void
+  /**
+   * @param string $presenter
+   * @param array $routes
+   */
+	private function findRoutesInPresenter(string $presenter, array &$routes)
 	{
 		$r = ClassType::from($presenter);
 
@@ -148,7 +154,7 @@ class ApiRouterExtension extends CompilerExtension
 	}
 
 
-	private function findPresenterMethodRoute(\ReflectionMethod $method_reflection, array &$routes, ApiRoute $route): void
+	private function findPresenterMethodRoute(\ReflectionMethod $method_reflection, array &$routes, ApiRoute $route)
 	{
 		$action_route = $this->reader->getMethodAnnotation($method_reflection, ApiRoute::class);
 
@@ -182,8 +188,11 @@ class ApiRouterExtension extends CompilerExtension
 		$routes[$route->getPriority()][] = $action_route;
 	}
 
-
-	private function sortByPriority(array $routes): array
+  /**
+   * @param array $routes
+   * @return array
+   */
+	private function sortByPriority(array $routes)
 	{
 		$return = [];
 
@@ -196,8 +205,10 @@ class ApiRouterExtension extends CompilerExtension
 		return $return;
 	}
 
-
-	private function _getConfig(): array
+  /**
+   * @return array
+   */
+	private function _getConfig()
 	{
 		$config = $this->validateConfig($this->defaults, $this->config);
 

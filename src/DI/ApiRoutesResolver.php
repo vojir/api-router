@@ -1,6 +1,5 @@
 <?php
 
-declare(strict_types=1);
 
 /**
  * @copyright   Copyright (c) 2016 ublaboo <ublaboo@paveljanda.com>
@@ -20,7 +19,7 @@ class ApiRoutesResolver
 	/**
 	 * Place REST API routes at the beginnig of all routes
 	 */
-	public function prepandRoutes(IRouter $router, array $routes): void
+	public function prepandRoutes(IRouter $router, array $routes)
 	{
 		if (empty($routes)) {
 			return;
@@ -50,8 +49,11 @@ class ApiRoutesResolver
 		}
 	}
 
-
-	public function findAndDestroyUserRoutes(IRouter $router): array
+  /**
+   * @param IRouter $router
+   * @return array
+   */
+	public function findAndDestroyUserRoutes(IRouter $router)
 	{
 		$keys = [];
 		$return = [];
