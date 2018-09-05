@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * @copyright   Copyright (c) 2016 ublaboo <ublaboo@paveljanda.com>
  * @author      Pavel Janda <me@paveljanda.com>
@@ -114,7 +112,7 @@ class ApiRouterExtension extends CompilerExtension
    * @param string $presenter
    * @param array $routes
    */
-	private function findRoutesInPresenter(string $presenter, array &$routes)
+	private function findRoutesInPresenter($presenter, array &$routes)
 	{
 		$r = ClassType::from($presenter);
 
