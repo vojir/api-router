@@ -57,7 +57,7 @@ class ApiRouterExtension extends CompilerExtension
 	}
 
 
-	private function setupReaderAnnotations(array $config): void
+	private function setupReaderAnnotations(array $config)
 	{
 		/**
 		 * Prepare AnnotationRegistry
@@ -74,7 +74,7 @@ class ApiRouterExtension extends CompilerExtension
 	}
 
 
-	private function setupReader(array $compiler_config): void
+	private function setupReader(array $compiler_config)
 	{
 		$cache_path = $compiler_config['parameters']['tempDir'] . '/cache/ApiRouter.Annotations';
 
